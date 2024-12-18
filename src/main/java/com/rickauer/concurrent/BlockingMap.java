@@ -17,7 +17,7 @@
  * @param <V> the type of mapped values
  */
 
-package com.rickauer.blockingmap;
+package com.rickauer.concurrent;
 
 import java.util.Map;
 import java.util.Set;
