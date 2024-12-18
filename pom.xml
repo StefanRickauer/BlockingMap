@@ -5,4 +5,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>BlockingMap</name>
   <description>A threadsafe map-like data structure designed to handle asynchronous API responses efficiently. Supports blocking retrieval, timeouts, and optional observer notifications.</description>
+  <dependencies>
+  <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>5.9.1</version>
+        <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>
