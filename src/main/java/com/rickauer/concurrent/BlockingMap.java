@@ -74,22 +74,30 @@ public class BlockingMap<K, V> {
 	 * @throws NullPointerException if the key or value is null
 	 */ 
 	public void put(K key, V value) {
+		if (value == null) {
+			throw new NullPointerException("Value cannot be null.");
+		}
+		
+		if (isAvailable(key)) {
+			remove(key);
+		}
+
 		map.computeIfAbsent(key, k -> new CompletableFuture<>()).complete(value);
 	}
 	
 	
 	/**
-	 * Forces the insertion of a key-value pair into the map, overwriting any existing value.
-	 * Unlike {@link #put}, this method immediately completes the value associated with the key.
+	 * Adds the specified value to the map only if the specified key is not already associated with a value.
+	 * If the key is already present in the map, the existing value is retained, and the new value is ignored.
 	 *
 	 * @param key   the key with which the specified value is to be associated
-	 * @param value the value to associate with the key
-	 * @throws NullPointerException if the key or value is null
+	 * @param value the value to be added if the key is not already present
 	 */
-	public void forcePut(K key, V value) {
-		CompletableFuture<V> future = new CompletableFuture<>();
-		future.complete(value);
-		map.put(key, future);
+	public void putIfAbsent(K key, V value) {
+		if (value == null) {
+			throw new NullPointerException("Value cannot be null.");
+		}
+		map.computeIfAbsent(key, k -> new CompletableFuture<>()).complete(value);
 	}
 	
 	
