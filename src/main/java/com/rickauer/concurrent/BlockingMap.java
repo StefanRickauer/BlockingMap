@@ -92,6 +92,7 @@ public class BlockingMap<K, V> {
 	 *
 	 * @param key   the key with which the specified value is to be associated
 	 * @param value the value to be added if the key is not already present
+	 * @throws NullPointerException if the key or value is null 
 	 */
 	public void putIfAbsent(K key, V value) {
 		if (value == null) {
